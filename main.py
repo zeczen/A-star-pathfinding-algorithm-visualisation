@@ -1,3 +1,5 @@
+# Eyal
+
 import pygame
 from Square import Square
 
@@ -85,22 +87,22 @@ def update_cost_squares(pos):
     y_hig = y_pos + 1
 
     if x_low != -1:
-        if main_list[y_pos][x_low].addRank(start, stop, border_sq):
+        if main_list[y_pos][x_low].add_rank(start, stop, border_sq):
             main_list[y_pos][x_low].goto = pos
             update_single_sprite(main_list[y_pos][x_low])
 
     if x_hig != Square.NUM_OF_SQUARES_WIDTH:
-        if main_list[y_pos][x_hig].addRank(start, stop, border_sq):
+        if main_list[y_pos][x_hig].add_rank(start, stop, border_sq):
             main_list[y_pos][x_hig].goto = pos
             update_single_sprite(main_list[y_pos][x_hig])
 
     if y_low != -1:
-        if main_list[y_low][x_pos].addRank(start, stop, border_sq):
+        if main_list[y_low][x_pos].add_rank(start, stop, border_sq):
             main_list[y_low][x_pos].goto = pos
             update_single_sprite(main_list[y_low][x_pos])
 
     if y_hig != Square.NUM_OF_SQUARES_HEIGHT:
-        if main_list[y_hig][x_pos].addRank(start, stop, border_sq):
+        if main_list[y_hig][x_pos].add_rank(start, stop, border_sq):
             main_list[y_hig][x_pos].goto = pos
             update_single_sprite(main_list[y_hig][x_pos])
 
@@ -171,7 +173,7 @@ def on_finish():
     distance = abs(x_start - x_stop) + abs(y_start - y_stop)
     # this is the distance in a straight trajectory, without diagonals
 
-    start.addRank(start, stop, border_sq)
+    start.add_rank(start, stop, border_sq)
 
     stats(length_path, sum_path, distance)
 
@@ -180,7 +182,6 @@ def on_finish():
 
 def on_stuck():
     print("there is no way.")
-    return
 
 
 def the_game():
@@ -188,15 +189,15 @@ def the_game():
 
     pos = start
     run = True
-    finish = False
 
-    while not finish:
+    while True:
         if run:
             update_cost_squares(pos)
             pos = lowest_score_point()
-            if pos == start: pos.set_sit('Edge')
             if pos is None or pos == stop:
-                finish = True
+                break
+            if pos == start:
+                pos.set_sit('Edge')
 
             clock.tick(TICK_SECOND)
 
@@ -248,8 +249,9 @@ if __name__ == "__main__":
          - Middle button to erase 
         ========================================
     '''
-    )
+ )
     try:
         main()
     except Exception as e:
         pygame.quit()
+
