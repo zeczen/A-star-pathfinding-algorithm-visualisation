@@ -17,7 +17,7 @@ class Square:
     def __init__(self, x, y):  # the (x, y) is the top left corner [* ]
         Square.how_many_created += 1
 
-        self.rank = 0
+        self.rank = None
         self.isRanked = False
 
         self.MAP_INDEX = x // (Square.SQUARE_WIDTH + 1), y // (Square.SQUARE_HEIGHT + 1)
