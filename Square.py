@@ -1,3 +1,5 @@
+# Eyal
+
 import pygame
 from math import sqrt
 
@@ -72,7 +74,7 @@ class Square:
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, (self.rect.x, self.rect.y, Square.SQUARE_WIDTH, Square.SQUARE_HEIGHT))
 
-    def addRank(self, start, end, border_sq):
+    def add_rank(self, start, end, border_sq):
         if self.isRanked or self.sit is "Block" :
             return False
         self.set_sit("Border")
