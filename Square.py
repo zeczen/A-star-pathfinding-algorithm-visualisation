@@ -39,31 +39,31 @@ class Square:
         self.goto = None
 
     def set_sit(self, new_sit):
-        if new_sit is 'Block':
+        if new_sit == 'Block':
             self.sit = new_sit
             self.color = (128, 0, 128)
             self.image.fill(self.color)
-        elif new_sit is 'Path':
+        elif new_sit == 'Path':
             self.sit = new_sit
             self.color = (0, 0, 0)
             self.image.fill(self.color)
-        elif new_sit is 'Edge':
+        elif new_sit == 'Edge':
             self.sit = new_sit
             self.color = (21, 169, 176)
             self.image.fill(self.color)
-        elif new_sit is 'Null':
+        elif new_sit == 'Null':
             self.sit = new_sit
             if sum(self.MAP_INDEX) % 2:
                 self.color = (255, 255, 255)
             else:
                 self.color = (200, 191, 231)
             self.image.fill(self.color)
-        elif new_sit is 'Check':
+        elif new_sit == 'Check':
 
             self.sit = new_sit
             self.color = (215, 147, 6)
             self.image.fill(self.color)
-        elif new_sit is 'Border':
+        elif new_sit == 'Border':
             self.sit = new_sit
             self.color = (128, 106, 200)
             self.image.fill(self.color)
@@ -75,7 +75,7 @@ class Square:
         pygame.draw.rect(screen, self.color, (self.rect.x, self.rect.y, Square.SQUARE_WIDTH, Square.SQUARE_HEIGHT))
 
     def add_rank(self, start, end, border_sq):
-        if self.isRanked or self.sit is "Block" :
+        if self.isRanked or self.sit == "Block":
             return False
         self.set_sit("Border")
         border_sq.append(self)
