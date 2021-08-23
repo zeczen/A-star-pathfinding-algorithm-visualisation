@@ -5,7 +5,7 @@ from math import sqrt
 
 
 class Square:
-    SQUARE_WIDTH = SQUARE_HEIGHT = 20
+    SQUARE_WIDTH = SQUARE_HEIGHT = 12
     BOARD_WIDTH = BOARD_HEIGHT = 700
 
     NUM_OF_SQUARES_WIDTH = (BOARD_WIDTH // SQUARE_WIDTH) - 1
