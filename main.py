@@ -216,7 +216,15 @@ def the_game():
 
 def main():
     global start, stop, main_list, border_sq
-
+    print(
+        '''
+        ========================================
+         - Right button for start and end
+         - Left button to create a block / start new map / stop and continue running
+         - Middle button to erase 
+        ========================================
+    '''
+    )
     update_sprites()
     initial_game()
     the_game()
@@ -241,17 +249,8 @@ def main():
 
 
 if __name__ == "__main__":
-    print(
-        '''
-        ========================================
-         - Right button for start and end
-         - Left button to create a block / start new map / stop and continue running
-         - Middle button to erase 
-        ========================================
-    '''
- )
     try:
         main()
-    except Exception as e:
-        pygame.quit()
+    finally:
+        quit()
 
