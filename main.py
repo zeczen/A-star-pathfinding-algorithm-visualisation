@@ -181,7 +181,7 @@ def on_finish():
 
 
 def on_stuck():
-    print("there is no way.")
+    print("\tthere is no way.")
 
 
 def the_game():
@@ -252,5 +252,6 @@ if __name__ == "__main__":
     try:
         main()
     finally:
+        pygame.quit()
         quit()
 
