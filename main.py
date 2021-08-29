@@ -1,20 +1,27 @@
 # Eyal
 
-import pygame
+from os import devnull
+import sys
 from Square import Square
 
-TICK_SECOND = 50
+sys.stdout = open(devnull, 'w')
+
+
+TICK_SECOND = 500
 start = stop = None
 main_list = [[Square(x, y) for x in range(1, Square.BOARD_WIDTH, Square.SQUARE_WIDTH + 1)]
              for y in range(1, Square.BOARD_HEIGHT, Square.SQUARE_HEIGHT + 1)]
 
 border_sq = []
+
+import pygame
 display_surface = pygame.display.set_mode((0, 0))
 screen = pygame.display.set_mode((Square.BOARD_WIDTH, Square.BOARD_HEIGHT))
 pygame.display.set_caption('Board')
 clock = pygame.time.Clock()
 
 pygame.init()
+sys.stdout = sys.__stdout__
 
 
 def update_sprites():
