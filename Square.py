@@ -19,7 +19,7 @@ class Square:
     def __init__(self, x, y):  # the (x, y) is the top left corner [* ]
         Square.how_many_created += 1
 
-        self.rank = None
+        self.rank = 0
         self.isRanked = False
 
         self.MAP_INDEX = x // (Square.SQUARE_WIDTH + 1), y // (Square.SQUARE_HEIGHT + 1)
@@ -37,6 +37,7 @@ class Square:
         self.image = pygame.Surface((Square.SQUARE_WIDTH - 1, Square.SQUARE_HEIGHT - 1))
         self.image.fill(self.color)
         self.goto = None
+        self.cost = 0
 
     def set_sit(self, new_sit):
         if new_sit == 'Block':
@@ -59,7 +60,6 @@ class Square:
                 self.color = (200, 191, 231)
             self.image.fill(self.color)
         elif new_sit == 'Check':
-
             self.sit = new_sit
             self.color = (215, 147, 6)
             self.image.fill(self.color)
@@ -79,7 +79,7 @@ class Square:
             return False
         self.set_sit("Border")
         border_sq.append(self)
-        g_cost = self.distance(start)
+        g_cost = self.cost
         h_cost = self.distance(end)
         f_cost = g_cost + h_cost
         self.rank = f_cost
@@ -96,6 +96,26 @@ class Square:
             raise Exception("RANK_ERROR")
 
         return self.rank > sq.rank
+        
+        
+    def __iter__(self):
+        x_pos, y_pos = self.MAP_INDEX
+        x_low = x_pos - 1
+        y_low = y_pos - 1
+        x_hig = x_pos + 1
+        y_hig = y_pos + 1
+
+        if x_low != -1:
+            yield y_pos, x_low
+
+        if x_hig != Square.NUM_OF_SQUARES_WIDTH:
+            yield y_pos, x_hig
+
+        if y_low != -1:
+            yield y_low, x_pos
+
+        if y_hig != Square.NUM_OF_SQUARES_HEIGHT:
+            yield y_hig, x_pos
 
     def __eq__(self, sq):
         return self.rect.x == sq.rect.x and self.rect.y == sq.rect.y
