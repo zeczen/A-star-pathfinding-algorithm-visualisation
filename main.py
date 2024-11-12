@@ -41,7 +41,7 @@ def update_single_sprite(sq):
 
 
 def find_index(x, y):
-    return (x // (Square.SQUARE_WIDTH + 1)), (y // (Square.SQUARE_WIDTH + 1))
+    return min(len(main_list[0])-1, x // (Square.SQUARE_WIDTH + 1)), min(len(main_list)-1, y // (Square.SQUARE_WIDTH + 1))
 
 def prim_mst():
     global main_list
@@ -304,9 +304,5 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    finally:
-        pygame.quit()
-        quit()
-
+    main()
+    
