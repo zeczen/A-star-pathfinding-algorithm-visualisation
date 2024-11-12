@@ -23,19 +23,12 @@ class Square:
         self.isRanked = False
 
         self.MAP_INDEX = x // (Square.SQUARE_WIDTH + 1), y // (Square.SQUARE_HEIGHT + 1)
-        if sum(self.MAP_INDEX) % 2:
-            self.color = (255, 255, 255)
-
-        else:
-            self.color = (200, 191, 231)
-
         self.rect = pygame.Rect(x, y, Square.SQUARE_WIDTH, Square.SQUARE_HEIGHT)
 
         self.rect.x = x
         self.rect.y = y
-        self.sit = 'Null'
         self.image = pygame.Surface((Square.SQUARE_WIDTH - 1, Square.SQUARE_HEIGHT - 1))
-        self.image.fill(self.color)
+        self.set_sit('Null')
         self.goto = None
         self.cost = 0
 
@@ -57,7 +50,7 @@ class Square:
             if sum(self.MAP_INDEX) % 2:
                 self.color = (255, 255, 255)
             else:
-                self.color = (200, 191, 231)
+                self.color = (227, 223, 243)
             self.image.fill(self.color)
         elif new_sit == 'Check':
             self.sit = new_sit
